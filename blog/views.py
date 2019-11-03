@@ -12,10 +12,11 @@ def post_list(request):
 
 def post_detail(request, year, month, day, slug):
     post = BlogPost.objects.filter(
-        publish=datetime.date(year, month, day),
+        #publish__date__gt=datetime.date(year, month, day),
         #publish__year=year,
         #publish__month=month,
         #publish__day=day,
+        publish=datetime.date(year, month, day),
         slug=slug
     ).first()
     return render(
