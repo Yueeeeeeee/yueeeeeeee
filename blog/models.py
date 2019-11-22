@@ -9,8 +9,8 @@ class BlogPost(models.Model):
         ('draft', 'Draft'),
         ('published', 'Published'),
     )
-    title = models.CharField(max_length=250)
-    slug = models.CharField(max_length=250)
+    title = models.CharField(max_length=256)
+    slug = models.CharField(max_length=256)
 
     author = models.ForeignKey(
         User,
@@ -44,3 +44,22 @@ class BlogPost(models.Model):
                 self.slug
             ]
         )
+
+class BlogComment(models.Model):
+    post = models.ForeignKey(
+        BlogPost,
+        on_delete=models.CASCADE,
+        related_name='blog_comments'
+    )
+    username = models.CharField(max_length=128)
+    email = models.EmailField()
+    body = models.TextField()
+    created = models.DateField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ('-created',)
+
+    def __str__(self):
+        return 'Comment by {} on {}'.format(self.username, self.post)
