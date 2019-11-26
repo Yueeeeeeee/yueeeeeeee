@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from taggit.models import Tag
 from blog.models import BlogPost
 from blog.forms import CommentForm
 import datetime
 
-from taggit.models import Tag
 
 # List view of blogs
 def post_list(request, tag_slug=None):
@@ -15,7 +15,8 @@ def post_list(request, tag_slug=None):
     else:  # all posts
         post_list = BlogPost.objects.all()
     
-    # divide blogs by pages
+    # retrive tags and divide blogs by pages
+    tag_list = Tag.objects.all()
     paginator = Paginator(post_list, 10) # 10 blogs per page
     page = request.GET.get('page')
     
@@ -31,7 +32,7 @@ def post_list(request, tag_slug=None):
     return render(
         request,
         'blog/post/list.html',
-        {'posts': posts}
+        {'posts': posts, 'tag_list': tag_list}
     )
 
 # Single view of a blog
