@@ -17,7 +17,7 @@ def post_list(request, tag_slug=None):
     
     # retrive tags and divide blogs by pages
     tag_list = Tag.objects.all()
-    paginator = Paginator(post_list, 10) # 10 blogs per page
+    paginator = Paginator(post_list, 6) # 6 blogs per page
     page = request.GET.get('page')
     
     # prevent page number overflow/underflow
