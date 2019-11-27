@@ -24,8 +24,8 @@ class CommentAdmin(admin.ModelAdmin):
         'username', 'email', 'created', 'post', 'active'
     )
     list_filter = (
-        'active', 'created', 'email'
+        'active', 'username', 'email'
     )
     search_fields = (
-        'username', 'email'
+        'username', 'email', 'post'
     )
