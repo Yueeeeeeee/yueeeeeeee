@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'taggit',
+    'crispy_forms',
     'blog.apps.BlogConfig',
 ]
 
@@ -128,3 +129,5 @@ STATICFILES_DIRS = [
     '/var/www/yueeeeeeee.com/static/',
 ]
 STATIC_URL = '/static/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
