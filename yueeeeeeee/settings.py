@@ -31,6 +31,9 @@ AUTHENTICATION_BACKENDS = [
     'account.authentication.EmailAuthBackend',
 ]
 
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '63513736854-gs69kkohn81nefmlgu1gp9elktu0oiq4.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'yO60Ar80yRThoyYfOPbOewA'
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
