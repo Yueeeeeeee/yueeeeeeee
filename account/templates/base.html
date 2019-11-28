@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+  <div id="header">
+    <span class="logo">WeShare</span>
+    {% if request.user.is_authenticated %}
+      <ul class="menu">
+        <li>
+          <a href="{% url 'account:dashboard' %}">My dashboard</a>
+        </li>
+      </ul>
+    {% endif %}
+    <span class="user">
+      {% if request.user.is_authenticated %}
+        Hello  <a href="#"><u>{{ request.user.username }}</u>,</a>
+        <a href="{% url 'account:logout' %}"><u>Logout</u></a>
+      {% else %}
+        <a href="{% url 'account:login' %}"><u>Log-in</u></a>
+      {% endif %}
+    </span>
+  </div>
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+</body>
+</html>

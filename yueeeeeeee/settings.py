@@ -13,10 +13,23 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import sys
 
+# Set UTF-8 for Chinese chars
 default_encoding = 'utf-8'
 if sys.getdefaultencoding() != default_encoding:
     reload(sys)
     sys.setdefaultencoding(default_encoding)
+
+# User authentication URL
+LOGIN_REDIRECT_URL = '/account/dashboard'
+LOGIN_URL = '/account/login'
+LOGOUT_URL = '/account/logout'
+
+# Authentication backends
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.google.GoogleOAuth2',
+    'account.authentication.EmailAuthBackend',
+]
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,7 +58,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'taggit',
     'crispy_forms',
+    'social_django',
     'blog.apps.BlogConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
