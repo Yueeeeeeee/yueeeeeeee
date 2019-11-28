@@ -21,6 +21,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='http://yueeeeeeee.com/blog'), name='redirect to index'),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', namespace='blog')),
+    path('image/', include('image.urls', namespace='image')),
     path('account/', include('account.urls', namespace='account')),
     path('social_auth/', include('social_django.urls', namespace='social')),
 ]
