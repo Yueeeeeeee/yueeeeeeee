@@ -12,11 +12,11 @@
     {% if request.user.username != user.username %}
       <div>
           {% if request.user in user.followers.all %}
-            <a class="count-like" href="{% url "unfollow" user.username %}">
+            <a class="count-like" href="{% url 'account:unfollow' user.username %}">
               following
             </a>
          {% else %}
-            <a class="count" href="{% url "follow" user.username %}">
+            <a class="count" href="{% url 'account:follow' user.username %}">
               follow
             </a>
         {% endif %}

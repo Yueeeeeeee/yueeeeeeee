@@ -6,6 +6,18 @@ from image.forms import ImageForm
 from image.models import Image
 
 # Create your views here.
+def image_list(request):
+    images = Image.objects.all()
+    paginator = Paginator(images, 9)
+    page = request.GET.get('page')
+    try:
+        images = paginator.page(page)
+    except PageNotAnInteger:
+        images = paginator.page(1)
+    except EmptyPage:
+        images = paginator.page(paginator.num_pages)
+    return render(request, 'image/image_list.html', {'images': images})
+
 @login_required
 def image_upload(request):
 
@@ -19,19 +31,6 @@ def image_upload(request):
     else:
         form = ImageForm()
         return render(request, 'image/image_upload.html', {'form': form})
-
-@login_required
-def image_list(request):
-    images = Image.objects.all()
-    paginator = Paginator(images, 9)
-    page = request.GET.get('page')
-    try:
-        images = paginator.page(page)
-    except PageNotAnInteger:
-        images = paginator.page(1)
-    except EmptyPage:
-        images = paginator.page(paginator.num_pages)
-    return render(request, 'image/image_list.html', {'images': images})
 
 @login_required
 def image_detail(request, id, slug):

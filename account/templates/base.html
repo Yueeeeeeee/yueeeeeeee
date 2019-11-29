@@ -3,6 +3,7 @@
 <html>
 <head>
   <title>{% block title %}{% endblock %}</title>
+  <link href="{% static "css/style.css" %}" rel="stylesheet">
 </head>
 <body>
   <div id="header">
@@ -12,12 +13,19 @@
         <li>
           <a href="{% url 'account:dashboard' %}">My dashboard</a>
         </li>
+        <li>
+          <a href="{% url 'image:image_list' %}">Images</a>
+        </li>
+        <li>
+            <a href="{% url 'account:user_list' %}">User List</a>
+          </li>
       </ul>
     {% endif %}
     <span class="user">
       {% if request.user.is_authenticated %}
-        Hello  <a href="#"><u>{{ request.user.username }}</u>,</a>
+        Hello  <a href="{% url 'account:profile' request.user.username %}"><u>{{ request.user.first_name }}</u>,</a>
         <a href="{% url 'account:logout' %}"><u>Logout</u></a>
+        /<a href="{% url 'account:password_change' %}"><u>Change Password</u></a>
       {% else %}
         <a href="{% url 'account:login' %}"><u>Log-in</u></a>
       {% endif %}
