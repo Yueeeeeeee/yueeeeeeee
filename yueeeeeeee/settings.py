@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'taggit',
     'crispy_forms',
     'social_django',
+    'sorl.thumbnail',
     'blog.apps.BlogConfig',
     'account.apps.AccountConfig',
     'image.apps.ImageConfig',

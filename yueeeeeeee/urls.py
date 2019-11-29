@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import RedirectView
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from yueeeeeeee.settings import MEDIA_URL, MEDIA_ROOT
 
 urlpatterns = [
     path('', RedirectView.as_view(url='http://yueeeeeeee.com/blog'), name='redirect to index'),
@@ -25,3 +28,6 @@ urlpatterns = [
     path('account/', include('account.urls', namespace='account')),
     path('social_auth/', include('social_django.urls', namespace='social')),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
