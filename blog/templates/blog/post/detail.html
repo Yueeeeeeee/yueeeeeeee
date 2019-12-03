@@ -8,15 +8,9 @@
 
     <br/>
     <h1 class="mt-5">
-        {% if post.author.pk == 1 %}
-            <img class="rounded-circle" src="{% static 'pic/yue.jpeg' %}" height="64" width="64">
-        {% elif post.author.pk == 2 %}
-            <img class="rounded-circle" src="{% static 'pic/gui.jpeg' %}" height="64" width="64">
-        {% elif post.author.pk == 3 %}
-            <img class="rounded-circle" src="{% static 'pic/yu.jpeg' %}" height="64" width="64">
-        {% else %}
-            <img class="rounded-circle" src="{% static 'pic/allother.jpeg' %}" height="64" width="64">
-        {% endif %}
+        <a href="{% url 'account:profile' user %}">
+            <img class="rounded-circle" src="{{ post.author.gravatar }}" height="64" width="64">
+        </a>
         &nbsp&nbsp{{ post.title }}
     </h1>
 
@@ -28,6 +22,10 @@
         {% endif %}
         <small>&nbsp&nbspPublished {{ post.publish }} by {{ post.author }}</small>
     </p>
+
+    {% if post.image %}
+        <img class="image-detail" src="{{ post.image.url }}" width="500">
+    {% endif %}
 
     <p class="lead">{{ post.body|linebreaks }}</p>
 

@@ -16,7 +16,11 @@
             {% for post in posts %}
                 <div class="col-md-4">
                     <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=No Picture" alt="Blog Picture [100%x225]" data-holder-rendered="true" style="height: 100%; width: 100%; display: block;">
+                        {% if post.image %}
+                            <img class="card-img-top" src="{{ post.image.url }}" alt="Blog Picture" data-holder-rendered="true" style="height: 100%; width: 100%;">
+                        {% else %}
+                            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=No Picture" data-holder-rendered="true" style="height: 100%; width: 100%; display: block;">
+                        {% endif %}
                         <div class="card-body">
                             <h5 class="card-title" href="{{ post.get_url }}">{{ post.title }}</h5>
                             {% if post.tags.count %}

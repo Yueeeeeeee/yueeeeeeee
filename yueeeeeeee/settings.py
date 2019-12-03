@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import sys
+from django.urls import reverse_lazy
 
 # Set UTF-8 for Chinese chars
 default_encoding = 'utf-8'
@@ -20,9 +21,9 @@ if sys.getdefaultencoding() != default_encoding:
     sys.setdefaultencoding(default_encoding)
 
 # User authentication URL
-LOGIN_REDIRECT_URL = '/account/dashboard'
-LOGIN_URL = '/account/login'
-LOGOUT_URL = '/account/logout'
+LOGIN_REDIRECT_URL = reverse_lazy('account:dashboard')
+LOGIN_URL = reverse_lazy('account:login')
+LOGOUT_URL = reverse_lazy('account:logout')
 
 # Authentication backends
 AUTHENTICATION_BACKENDS = [

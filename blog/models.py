@@ -13,14 +13,13 @@ class BlogPost(models.Model):
     )
     title = models.CharField(max_length=256)
     slug = models.CharField(max_length=256)
-
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name='blog_posts'
     )
-
     body = models.TextField()
+    image = models.ImageField(upload_to='blog/images/%Y/%m/%d/', blank=True)
     publish = models.DateField(default=timezone.now)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
