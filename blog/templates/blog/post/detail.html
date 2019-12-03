@@ -36,7 +36,7 @@
     {% for comment in post.blog_comments.all %}
         <div>
             <small>
-                <img class="rounded-circle" src="{% static 'pic/allother.jpeg' %}" height="30" width="30">
+                <img class="rounded-circle" src="{{ comment.gravatar }}" height="30" width="30">
                 &nbsp&nbspComment by {{ comment.username }} on {{ comment.created }}
             </small>
             <div class="ml-5">

@@ -28,7 +28,7 @@ class Contact(models.Model):
             self.user_following, self.user_followed
         )
 
-def gravatar(self, size=80):
+def gravatar(self, size=128):
     md5_digest = md5(self.email.lower().encode('utf-8')).hexdigest()
     return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(md5_digest, size)
 

@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from hashlib import md5
 
 from taggit.managers import TaggableManager
 
@@ -65,3 +66,7 @@ class BlogComment(models.Model):
 
     def __str__(self):
         return 'Comment by {} on {}'.format(self.username, self.post)
+
+    def gravatar(self, size=64):
+        md5_digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(md5_digest, size)
