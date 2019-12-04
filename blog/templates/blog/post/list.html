@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% load thumbnail %}
 
 {% block content %}
 
@@ -17,9 +18,15 @@
                 <div class="col-md-4">
                     <div class="card mb-4 box-shadow">
                         {% if post.image %}
-                            <img class="card-img-top" src="{{ post.image.url }}" alt="Blog Picture" data-holder-rendered="true" style="height: 100%; width: 100%;">
+                            {% thumbnail post.image "300x200" crop="100%" as im %}
+                            <a href="{{ post.get_url }}">
+                                <img class="card-img-top" src="{{ im.url }}" alt="Blog Picture" data-holder-rendered="true" style="height: 100%; width: 100%;">
+                            </a>
+                            {% endthumbnail %}
                         {% else %}
-                            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=No Picture" data-holder-rendered="true" style="height: 100%; width: 100%; display: block;">
+                            <a href="{{ post.get_url }}">
+                                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=No Picture" data-holder-rendered="true" style="height: 100%; width: 100%; display: block;">
+                            </a>
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title" href="{{ post.get_url }}">{{ post.title }}</h5>
