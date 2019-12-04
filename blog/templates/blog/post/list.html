@@ -19,9 +19,9 @@
                     <div class="card mb-4 box-shadow">
                         {% if post.image %}
                             {% thumbnail post.image "300x200" crop="100%" as im %}
-                            <a href="{{ post.get_url }}">
-                                <img class="card-img-top" src="{{ im.url }}" alt="Blog Picture" data-holder-rendered="true" style="height: 100%; width: 100%;">
-                            </a>
+                                <a href="{{ post.get_url }}">
+                                    <img class="card-img-top" src="{{ im.url }}" alt="Blog Picture">
+                                </a>
                             {% endthumbnail %}
                         {% else %}
                             <a href="{{ post.get_url }}">
